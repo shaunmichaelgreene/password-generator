@@ -54,6 +54,11 @@ function generatePassword() {
       alert("Your new password WILL NOT contain SPECIAL characters.");
     }
     console.log ("Include special characters in new password: " + special);
+  if (lowerCase == false && upperCase == false && numerical == false && special == false) {
+    alert("Invalid input. You did not choose to include any character types for your new password. Please click the 'Generate Password' button to try again and choose at least 1 type of character (Lowercase, Uppercase, Numerical, or Special). Thanks!");
+    console.log("Invalid input. You did not choose to include any charater types for your new password. Please click the 'Generate Password' button to try again, and choose 1 or more of the available character types (Lowercase, Uppercase, Numerical, and Special). Thanks!");
+    return;
+  }
 }  //end of generatePassword() function
 generatePassword();
 
