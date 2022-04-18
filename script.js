@@ -21,7 +21,9 @@ function generatePassword() {
   }
   else {
     alert("Your new password will be " + passwordLength + " characters long.");
+    console.log("Designated password length: " + passwordLength)
   }  
+
   //Prompts and validation to determine characters types to use
   var lowerCase = window.confirm("Would you like your new password to include LOWERCASE characters ('a, b, c, etc...')?");
     if (lowerCase) { //if user selects OK to include lowercase characters, alert the user, add the lowerCaseArray to the overall characterArray and print the contents and length of the array.
@@ -34,6 +36,7 @@ function generatePassword() {
       alert("Your new password WILL NOT contain LOWERCASE characters.");
     }
     console.log ("Include lowercase characters in new password: " + lowerCase);
+
     var upperCase = window.confirm("Would you like your new password to include UPPERCASE characters ('A, B, C, etc...')?");
     if (upperCase) { //if user selects OK to include uppercase characters, alert the user, add the upperCaseArray to the overall characterArray and print the contents and length of the array.
       alert("Your new password WILL contain UPPERCASE characters."); 
@@ -45,6 +48,7 @@ function generatePassword() {
       alert("Your new password WILL NOT contain UPPERCASE characters.");
     }
     console.log ("Include uppercase characters in new password: " + upperCase);
+
     var numerical = window.confirm("Would you like your new password to include NUMERICAL characters ('1, 2, 3, etc...')?");
     if (numerical) { //if user selects OK to include numerical characters, alert the user, add the numericalArray to the overall characterArray and print the contents and length of the array.
     alert("Your new password WILL contain NUMERICAL characters.");
@@ -56,6 +60,7 @@ function generatePassword() {
       alert("Your new password WILL NOT contain NUMERICAL characters.");
     }
     console.log ("Include numerical characters in new password: " + numerical);
+
     var special = window.confirm("Would you like your new password to include SPECIAL characters ('#, &, %, etc...')?");
     if (special) { //if user selects OK to include special characters, alert the user, add the specialArray to the overall characterArray and print the contents and length of the array.
       alert("Your new password WILL contain SPECIAL characters.");
@@ -67,17 +72,22 @@ function generatePassword() {
       alert("Your new password WILL NOT contain SPECIAL characters.");
     }
     console.log ("Include special characters in new password: " + special);
+
     //Validation to ensure at least 1 character type is chosen
-    if (lowerCase == false && upperCase == false && numerical == false && special == false) { //if user does not select any character types, alert the user and provide clearer instructions to repeat the process, and end the function.
+    if (!lowerCase && !upperCase && !numerical && !special) { //if user does not select any character types, alert the user and provide clearer instructions to repeat the process, and end the function.
       alert("Invalid input. You did not choose to include any character types for your new password. Please click the 'Generate Password' button to try again and choose at least 1 type of character (Lowercase, Uppercase, Numerical, or Special). Thanks!");
       console.log("Invalid input. You did not choose to include any charater types for your new password. Please click the 'Generate Password' button to try again, and choose 1 or more of the available character types (Lowercase, Uppercase, Numerical, and Special). Thanks!");
       return;
     }
-  //Randomizer  
-    
-}  //end of generatePassword() function
-generatePassword();
 
+    //Randomizer  
+    let password = "" //creates an empty string variable to build & store the password
+    for (let i = 0; i < passwordLength; i++) { //loop will iterate until the designated password length has been reached, assigning a new random character with each iteration.
+      let characterIndex = [Math.floor(Math.random() * characterArray.length)]; //use Math.random to pick a random value based on the length of the characterArray string. Use Math.floor to change it to an integer, which determines the location of the now random letter in the array that will be used in the password.
+      password = password + characterArray[characterIndex]; //add the new randomly chosen character from the array to the password. 
+    }
+    return password
+};  //end of generatePassword() function
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -89,5 +99,5 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Add event listener to generate button
+// Event listener for Generate Password button
 generateBtn.addEventListener("click", writePassword);
