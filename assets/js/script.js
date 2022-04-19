@@ -6,7 +6,6 @@ var numericalArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; //10 nu
 var specialArray = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '[', '{', ']', '}', ';', '"', ':', '/', '?', ',', '<', '.', '>']; //29 special characters
 var characterArray = []; //total character array to be used for new password (empty to start)
 
-debugger;
 function generatePassword() {
 
   //Prompt to Determine password length
